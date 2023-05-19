@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cool Website with Login Form and Sidebar</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .sidebar {
+            width: 200px;
+            height: 100%;
+            background-color: #f0f0f0;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(-100%);
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        .login-form {
+            width: 300px;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-form h2 {
+            text-align: center;
+        }
+
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .sidebar-open {
+            transform: translateX(0);
+        }
+
+        .homescreen {
+            text-align: center;
+        }
+    </style>
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("sidebar-open");
+        }
+
+        function login() {
+            var loginForm = document.getElementById("login-form");
+            var username = loginForm.elements["username"].value;
+            var password = loginForm.elements["password"].value;
+            var homescreen = document.getElementById("homescreen");
+            var loginFormContainer = document.getElementById("login-form-container");
+
+            if (username && password) {
+                homescreen.innerHTML = "Welcome to Frozee!";
+                loginFormContainer.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <button onclick="toggleSidebar()">☰</button>
+        <h1>Cool Website</h1>
+    </div>
+    <div id="sidebar" class="sidebar">
+        <h2>Sidebar</h2>
+        <ul>
+            <li>Menu Item 1</li>
+            <li>Menu Item 2</li>
+            <li>Menu Item 3</li>
+        </ul>
+    </div>
+    <div class="content">
+        <div id="login-form-container" class="login-form">
+            <h2>Login</h2>
+            <form id="login-form" onsubmit="event.preventDefault(); login();">
+                <input type="text" placeholder="Username" name="username" required>
+                <input type="password" placeholder="Password" name="password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        <div id="homescreen" class="homescreen"></div>
+    </div>
+</body>
+</html>
